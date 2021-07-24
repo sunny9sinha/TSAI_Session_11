@@ -106,7 +106,7 @@ attn_applied.shape
 torch.Size([1, 1, 256])
 ````
 Then we define the input for LSTM layer by concatenating the embedded tensor and attention applied tensor. We use unsqueeze to fake the batch size.
-```pyhton
+```python
 input_to_lstm = input_to_lstm_layer(torch.cat((embedded[0], attn_applied[0]), 1))
 input_to_lstm.shape
 
@@ -135,7 +135,7 @@ output_word_layer = nn.Linear(256, output_lang.n_words).to(device)
 
 Combining the code above and passing it for the complete sample sentence in a loop, also taking the relu on the lstm output and softmax on the linear layer output as required we get:
 
-```pyhton
+```python
 for i in range(4):
   decoder_input = torch.tensor([[target_indices[i]]], device=device)
   decoder_hidden = encoder_hidden
